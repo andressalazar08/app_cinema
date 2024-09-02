@@ -5,7 +5,7 @@ const getAllMovies = async (req, res) => {
         const movies = await Movie.findAll();
         res.json(movies);
     } catch (error) {
-        res.status(500).json({ error: 'Error buscando las películas' });
+        res.status(500).json({ error: error });
     }
 };
 
