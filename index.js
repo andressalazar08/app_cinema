@@ -22,7 +22,7 @@ router.get('/', (req,res)=>{
 
 app.use('/', router);
 const movieRoutes =  require('./routes/movieRoutes');
-app.use('/movie', movieRoutes);
+app.use('/peliculas', movieRoutes);
 
 //Database authenticate
 const authenticateAndSyncDatabase = async()=>{
