@@ -5,6 +5,7 @@ const { Sequelize }= require('sequelize');
 const sequelize = require('./config/database');
 
 
+
 const app = express();
 
 app.use(cors());
@@ -20,6 +21,8 @@ router.get('/', (req,res)=>{
 });
 
 app.use('/', router);
+const movieRoutes =  require('./routes/movieRoutes');
+app.use('/movie', movieRoutes);
 
 //Database authenticate
 const authenticateAndSyncDatabase = async()=>{
