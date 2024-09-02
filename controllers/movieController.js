@@ -1,6 +1,6 @@
 const Movie = require('../models/Movie');
 
-exports.getAllMovies = async (req, res) => {
+const getAllMovies = async (req, res) => {
     try {
         const movies = await Movie.findAll();
         res.json(movies);
@@ -18,3 +18,6 @@ exports.getAllMovies = async (req, res) => {
 //         res.status(500).json({ error: 'Error creating movie' });
 //     }
 // };
+module.exports = {
+    getAllMovies,
+}
