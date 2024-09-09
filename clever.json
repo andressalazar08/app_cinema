@@ -1,0 +1,8 @@
+{
+    "apps": [
+      {
+        "name": "app_cinema",
+        "path": "/api"
+      }
+    ]
+  }
