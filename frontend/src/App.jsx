@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getMovies } from './api';
+import './App.css';
 
 const App = () => {
   const [movies, setMovies] = useState([]);
@@ -13,16 +14,19 @@ const App = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Listado de Películas</h1>
-      <ul>
-        {movies.map((movie) => (
-          <li key={movie.id}>
-            {movie.titulo} - {movie.anio} ({movie.rating})
-          </li>
-        ))}
-      </ul>
+    <div className="movies-container">
+    <h1>Listado de Películas</h1>
+    <div className="movie-list">
+      {movies.map((movie) => (
+        <div className="movie-card" key={movie.id}>
+          <h2>{movie.titulo}</h2>
+          <p>Año: {movie.anio}</p>
+          <p>Duración: {movie.duracion} minutos</p>
+          <p>Rating: {movie.rating}/5</p>
+        </div>
+      ))}
     </div>
+  </div>
   );
 };
 
