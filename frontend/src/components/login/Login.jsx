@@ -10,7 +10,7 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     // Lógica básica de autenticación (puedes expandirla más tarde)
-    if (username === 'admin' && password === '1234') {
+    if (username === 'admin' && password === '12udea34') {
       navigate('/movies');  // Redirige al listado de películas si los datos son correctos
     } else {
       alert('Usuario o contraseña incorrectos');
