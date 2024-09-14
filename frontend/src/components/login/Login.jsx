@@ -18,28 +18,59 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container">
-      <h1>Login</h1>
-      <form onSubmit={handleLogin}>
-        <div>
-          <label>Username:</label>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
+        <div className="maincontainer">
+        <div className="container">
+                <form>
+                    <h2>Login</h2>
+
+                    <div className="inputBox">
+                        <input type="text" required="required" />
+                        <span>Username</span>
+                        <i></i>
+                    </div>
+
+                    <div className="inputBox">
+                        <input type="password" required="required" />
+                        <span>Password</span>
+                        <i></i>
+                    </div>
+
+                    <div className="links">
+                        <a href="#">Forgot Password</a>
+                        <a href="#">Signup</a>
+                    </div>
+
+                    <div className="inputBox">
+                        <input type="submit" value="Login"/>
+
+                    </div>
+                </form>
         </div>
-        <div>
-          <label>Password:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+
         </div>
-        <button type="submit">Login</button>
-      </form>
-    </div>
+
+    // <div className="login-container">
+    //   <h1>Login</h1>
+    //   <form onSubmit={handleLogin}>
+    //     <div>
+    //       <label>Username:</label>
+    //       <input
+    //         type="text"
+    //         value={username}
+    //         onChange={(e) => setUsername(e.target.value)}
+    //       />
+    //     </div>
+    //     <div>
+    //       <label>Password:</label>
+    //       <input
+    //         type="password"
+    //         value={password}
+    //         onChange={(e) => setPassword(e.target.value)}
+    //       />
+    //     </div>
+    //     <button type="submit">Login</button>
+    //   </form>
+    // </div>
   );
 };
 
