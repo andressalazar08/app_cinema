@@ -3,7 +3,8 @@ const { registerUser,
     loginUser, 
     logoutUser,
     getUserInfo,
-    updateUserProfile,    
+    updateUserProfile,
+    forgotPassword,    
 } = require('../controllers/userController');
 
 const router = express.Router();
@@ -16,6 +17,7 @@ router.post('/loginUser', loginUser);
 router.post('/logoutUser', logoutUser);
 router.get('/me', isAuthenticatedUser,getUserInfo);
 router.put('/updateUser', isAuthenticatedUser, updateUserProfile);
+router.post('/password/forgot', forgotPassword)
 
 
 

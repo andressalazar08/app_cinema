@@ -1,6 +1,6 @@
 const sequelize = require('../config/database');
 const { DataTypes } = require('sequelize');
-const crypt = require('crypto');
+const crypto = require('crypto');
 
 const User = sequelize.define('User', { 
 

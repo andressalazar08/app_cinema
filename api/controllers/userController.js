@@ -4,6 +4,7 @@ const { catchAsyncErrors } = require('../middlewares/cathcAsync');
 const { ClientError } = require('../utils/clientError');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
+const { sendEmail } = require('../utils/sendEmail');
 dotenv.config({path:'api/.env'});
 
 const op  =  require('sequelize').Op;
@@ -89,6 +90,49 @@ const updateUserProfile = catchAsyncErrors(async(req, res, next)=>{
     return res.status(200).json({message:'Data updated successfully'});
 });
 
+//Forgot password
+const forgotPassword = catchAsyncErrors(async(req, res, next)=>{
+    const { email } = req.body;
+
+    const user = await User.findOne({
+        where:{email:email}
+    })
+
+    if(!user) return next(new ClientError('User not found with this email', 404));
+
+    //get reset token
+    const resetToken =user.getResetPasswordToken();
+
+    await user.save({ validateBeforeSave: false });
+
+    //creat reset password url
+    const resetUrl = `${req.protocol}://${req.get('host')}/password/reset/${resetToken}`;
+
+    const message = `Your password reset token is as follow: \n\n${resetUrl}\n\nIf you have not requested this email, then ignore it`
+
+    try{
+
+        await sendEmail({
+            email: user.email,
+            subject:'cinema app udea recovery password',
+            message
+        })
+
+        res.status(200).json({
+            success: true,
+            message: `Email sent to: ${user.email} `
+        })
+
+    }catch(error){
+        user.resetPasswordToken = undefined;
+        user.resetPasswordExpire = undefined;
+
+        await user.save({ validateBeforeSave: false });
+
+        return next(new  ClientError(error.message, 404));
+    }
+
+})
 
 
 module.exports = { 
@@ -97,5 +141,6 @@ module.exports = {
     logoutUser,
     getUserInfo,
     updateUserProfile,
+    forgotPassword,
 
 }
