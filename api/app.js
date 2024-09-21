@@ -27,8 +27,8 @@ app.use('/peliculas', movieRoutes);
 
 
 //Ruta user
-const createUserRoute = require('./routes/createUserRoute');
-app.use('/createuser', createUserRoute);
+const userRoute = require('./routes/userRoutes');
+app.use('/createuser', userRoute);
 
 app.use(errorHandler);
 
