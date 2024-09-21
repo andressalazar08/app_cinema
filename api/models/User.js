@@ -1,5 +1,6 @@
 const sequelize = require('../config/database');
 const { DataTypes } = require('sequelize');
+const crypt = require('crypto');
 
 const User = sequelize.define('User', { 
 
@@ -25,8 +26,22 @@ const User = sequelize.define('User', {
         type:DataTypes.STRING,
         allowNull:true,
         defaultValue:'user',
+    },
+    resetPasswordToken:{
+        type:DataTypes.STRING,
+    },
+    resetPasswordExpire:{
+        type:DataTypes.DATE,
     }
 
 });
+
+User.prototype.getResetPasswordToken = function(){
+    const resetToken = crypto.randomBytes(20).toString('hex');
+    this.resetPasswordToken = crypto.createHash('sha256').update(resetToken).digest('hex');
+    this.resetPasswordExpire = Date.now() + 30*60*1000;
+    return resetToken;
+};
+
 
 module.exports = User;
