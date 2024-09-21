@@ -1,15 +1,16 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const { catchAsyncErrors } = require('../middlewares/cathcAsync');
+const { ClientError } = require('../utils/clientError');
 
-const registerUser = catchAsyncErrors(async(req, res)=>{
+const registerUser = catchAsyncErrors(async(req, res, next)=>{
 
     const { name, email, password, profile } = req.body;
 
 
         const existingUSer = await User.findOne({where:{email:email}});
         if(existingUSer){
-            return res.status(400).json({message:'User already exists, cannot create a user with this email'});
+            return next(new ClientError('User already exists, cannot create a user with this email', 409));
 
         }
 
