@@ -3,7 +3,7 @@ const cors = require('cors');
 const dotenv = require('dotenv').config();
 const { Sequelize }= require('sequelize');
 const sequelize = require('./config/database');
-
+const { errorHandler } = require('./middlewares/errors');
 
 const app = express();
 
@@ -30,7 +30,7 @@ app.use('/peliculas', movieRoutes);
 const createUserRoute = require('./routes/createUserRoute');
 app.use('/createuser', createUserRoute);
 
-
+app.use(errorHandler);
 
 
 module.exports=app;
