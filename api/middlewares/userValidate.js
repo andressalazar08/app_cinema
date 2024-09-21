@@ -1,13 +1,15 @@
+const { ClientError } = require('../utils/clientError');
+
 const newUserValidation = (req, res, next)=>{
     const { name, password } = req.body;
     if(name){
         if(password){
             return next();
         }else{
-            throw Error('Password cannot be empty');
+            throw new ClientError('Password cannot be empty', 400);
         }
     }else{
-        throw Error('Name cannot be empty');
+        throw new ClientError('Name cannot be empty', 400);
     }
 };
 module.exports ={
