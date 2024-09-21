@@ -4,10 +4,13 @@ const dotenv = require('dotenv').config();
 const { Sequelize }= require('sequelize');
 const sequelize = require('./config/database');
 const { errorHandler } = require('./middlewares/errors');
+const cookieParser = require('cookie-parser');
+
 
 const app = express();
 
 app.use(express.json());//req.body usefull
+app.use(cookieParser());//lectura de cookies para obtener del navegador
 
 app.use(cors());
 
@@ -28,7 +31,7 @@ app.use('/peliculas', movieRoutes);
 
 //Ruta user
 const userRoute = require('./routes/userRoutes');
-app.use('/createuser', userRoute);
+app.use('/user', userRoute);
 
 app.use(errorHandler);
 

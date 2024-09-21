@@ -51,9 +51,23 @@ const logoutUser = catchAsyncErrors(async(req, res, next)=>{
     return res.status(200).json({message:'User successfully logged out'});
 })
 
+
+//controller para el get data del user
+const getUserInfo = catchAsyncErrors(async(req, res, next)=>{
+    const user = await User.findByPk(req.user.userId,{
+        attributes:['name', 'email', 'profile']
+    });
+    return res.status(200).json({
+        message:'User found',
+        user
+    })
+});
+
+
 module.exports = { 
     registerUser,
     loginUser,
     logoutUser,
+    getUserInfo,
 
 }
