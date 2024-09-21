@@ -36,7 +36,7 @@ const loginUser = catchAsyncErrors(async(req,res, next)=>{
     const user = await User.findOne({where:{email:email}});
     if(!user) return next(new ClientError('User not found', 401));
     const isPasswordValid = await bcrypt.compare(password,user.password);
-    if(!isPasswordValid) return next(new ClientError('Wrong password'));
+    if(!isPasswordValid) return next(new ClientError('Wrong password',401));
     //if user email and password are correct a new token is generated
     const token = jwt.sign({userId:user.id}, process.env.SECRET_KEY, {expiresIn:'1h'});
     res.cookie('token', token, {httpOnly:true, maxAge:3600000});
@@ -44,8 +44,16 @@ const loginUser = catchAsyncErrors(async(req,res, next)=>{
     
 });
 
+
+//controller para el logout
+const logoutUser = catchAsyncErrors(async(req, res, next)=>{
+    res.clearCookie('token');
+    return res.status(200).json({message:'User successfully logged out'});
+})
+
 module.exports = { 
     registerUser,
     loginUser,
+    logoutUser,
 
 }
