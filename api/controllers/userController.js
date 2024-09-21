@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const bcrypt = require('bcrypt');
 
 const registerUser = async(req, res)=>{
 
@@ -11,10 +12,18 @@ const registerUser = async(req, res)=>{
 
         }
 
+        //encrypt password before create
+        let hashedPassword;
+        try{
+            hashedPassword = await bcrypt.hash(password,10);
+        }catch(hashError){
+            return {message:'Internal error on password hashing'}
+        }
+
         const newUser=await User.create({
             name, 
             email,
-            password,
+            password:hashedPassword,
             profile,
         })
         return res.status(201).json({message:'User registered successfully', user:newUser});
