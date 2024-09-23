@@ -4,7 +4,8 @@ const { registerUser,
     logoutUser,
     getUserInfo,
     updateUserProfile,
-    forgotPassword,    
+    forgotPassword,
+    changePassword,    
 } = require('../controllers/userController');
 
 const router = express.Router();
@@ -17,7 +18,8 @@ router.post('/loginUser', loginUser);
 router.post('/logoutUser', logoutUser);
 router.get('/me', isAuthenticatedUser,getUserInfo);
 router.put('/updateUser', isAuthenticatedUser, updateUserProfile);
-router.post('/password/forgot', forgotPassword)
+router.post('/password/forgot', forgotPassword);
+router.put('/passwordReset/:resetToken', changePassword);
 
 
 

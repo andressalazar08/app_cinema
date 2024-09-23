@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 const { sendEmail } = require('../utils/sendEmail');
 dotenv.config({path:'api/.env'});
+const crypto = require('crypto');
 
 const op  =  require('sequelize').Op;
 
@@ -135,6 +136,30 @@ const forgotPassword = catchAsyncErrors(async(req, res, next)=>{
 })
 
 
+//change password
+const changePassword = catchAsyncErrors(async(req, res, next)=>{
+    const { resetToken } = req.params;
+    const { newPassword, confirmNewPassword } = req.body;
+    const resetPasswordToken = crypto.createHash('sha256').update(resetToken).digest('hex');
+    const user = await User.findOne({where:{
+        resetPasswordToken: resetPasswordToken,
+        resetPasswordExpire: {[op.gt]: Date.now()}
+    }});
+    if(!user) return next(new ClientError('token is invalid or has been expired'));
+    if(newPassword !== confirmNewPassword) return next(new ClientError('Passwords do not match'));
+    
+    //encrypt password before update user            
+    let hashedPassword = await bcrypt.hash(newPassword,10);
+    user.password = hashedPassword;
+    user.resetPasswordToken = null;
+    user.resetPasswordExpire = null;
+    await user.save();
+    return res.status(200).json({message:'Password changed successfully'});
+});
+
+
+
+
 module.exports = { 
     registerUser,
     loginUser,
@@ -142,5 +167,6 @@ module.exports = {
     getUserInfo,
     updateUserProfile,
     forgotPassword,
+    changePassword
 
 }
