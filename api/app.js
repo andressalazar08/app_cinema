@@ -33,6 +33,12 @@ app.use('/peliculas', movieRoutes);
 const userRoute = require('./routes/userRoutes');
 app.use('/user', userRoute);
 
+
+//Admin route
+const adminRoute = require('./routes/adminRoute');
+app.use('/admin', adminRoute);
+
+
 app.use(errorHandler);
 
 

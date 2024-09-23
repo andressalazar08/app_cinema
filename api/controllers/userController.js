@@ -39,7 +39,7 @@ const registerUser = catchAsyncErrors(async(req, res, next)=>{
 //controlador para el login de usuarios
 const loginUser = catchAsyncErrors(async(req,res, next)=>{
     const { email, password } = req.body;
-    const user = await User.findOne({where:{email:email, isActive:true}});
+    const user = await User.findOne({where:{email:email}});//, isActive:true
     if(!user) return next(new ClientError('User not found', 401));
     const isPasswordValid = await bcrypt.compare(password,user.password);
     if(!isPasswordValid) return next(new ClientError('Wrong password',401));
@@ -96,7 +96,7 @@ const forgotPassword = catchAsyncErrors(async(req, res, next)=>{
     const { email } = req.body;
 
     const user = await User.findOne({
-        where:{email:email, isActive:true}
+        where:{email:email} //, isActive:true
     })
 
     if(!user) return next(new ClientError('User not found with this email', 404));
