@@ -46,7 +46,7 @@ const loginUser = catchAsyncErrors(async(req,res, next)=>{
     //if user email and password are correct a new token is generated
     const token = jwt.sign({userId:user.id}, process.env.SECRET_KEY, {expiresIn:'1h'});
     res.cookie('token', token, {httpOnly:true, maxAge:3600000});
-    return res.status(200).json({message:'User successfully logged in'});
+    return res.status(200).json({message:'User successfully logged in', token: token});
     
 });
 
