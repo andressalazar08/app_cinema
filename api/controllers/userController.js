@@ -158,7 +158,22 @@ const changePassword = catchAsyncErrors(async(req, res, next)=>{
 });
 
 
-
+//update password
+const updatePassword = catchAsyncErrors(async(req, res, next)=>{
+    //change password from inside the app
+    const user = await User.findByPk(req.user.userId);
+    const { oldPassword, newPassword, confirmNewPassword } = req.body;
+    const isMatched = await bcrypt.compare(oldPassword, user.password);
+    if(!isMatched) return next(new ClientError('Old password is incorrect', 400));
+    if(newPassword !== confirmNewPassword) return next(new ClientError('Passwords do not match', 400));
+    let hashedPassword = await bcrypt.hash(newPassword, 10);
+    user.password = hashedPassword;
+    await user.save();
+    //if the password has successfully changed a new token is generated
+    const token = jwt.sign({userId:user.id}, process.env.SECRET_KEY, {expiresIn:'1h'});
+    res.cookie('token', token, {httpOnly:true, maxAge:3600000});
+    return res.status(200).json({message:'Password updated successfully'});
+});
 
 module.exports = { 
     registerUser,
@@ -167,6 +182,7 @@ module.exports = {
     getUserInfo,
     updateUserProfile,
     forgotPassword,
-    changePassword
+    changePassword,
+    updatePassword,
 
 }
