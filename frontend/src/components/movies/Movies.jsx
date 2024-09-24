@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { getMovies } from '../../api';
 import './Movies.css';
+// import '../navbar/Navbar';
+// import  Navbar  from '../navbar/Navbar';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
@@ -15,6 +17,7 @@ const Movies = () => {
 
   return (
     <div className="movies-container">
+    {/* <Navbar /> */}
     <h1>Listado de Películas</h1>
     <div className="movie-list">
       {movies.map((movie) => (

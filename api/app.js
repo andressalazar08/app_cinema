@@ -16,11 +16,12 @@ console.log(process.env.FRONT);
 
 app.options('*', cors());
 
-app.use(cors({
-    origin: process.env.FRONT, // Sin la barra al final
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
-    credentials: true // Si estás usando cookies o autenticación con sesión
-  }));
+// app.use(cors({
+//     origin: process.env.FRONT, // Sin la barra al final
+//     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
+//     credentials: true // Si estás usando cookies o autenticación con sesión
+//   }));
+app.use(cors());
 const router = express.Router();
 
 router.get('/', (req,res)=>{
