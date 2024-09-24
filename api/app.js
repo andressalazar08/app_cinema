@@ -11,14 +11,14 @@ const app = express();
 
 app.use(express.json());//req.body usefull
 app.use(cookieParser());//lectura de cookies para obtener del navegador
-
+console.log(process.env.FRONT);
 
 
 app.use(cors({
-  origin: process.env.FRONT // Asegúrate de permitir tu dominio de frontend
-}))
-
-
+    origin: process.env.FRONT, // Sin la barra al final
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
+    credentials: true // Si estás usando cookies o autenticación con sesión
+  }));
 const router = express.Router();
 
 router.get('/', (req,res)=>{
