@@ -32,10 +32,11 @@ const Movies = () => {
       onError={(e) => { e.target.src = 'https://via.placeholder.com/300'; }} // Por si hay un error en la URL
     />
           <h2>{movie.titulo}</h2>
-          <h6>{movie.image_url}</h6>
+          <h2>{movie.image_url}</h2>
           <p>Año: {movie.anio}</p>
           <p>Duración: {movie.duracion} minutos</p>
           <p>Rating: {movie.rating}/5</p>
+          <p>prueba</p>
         </div>
       ))}
     </div>
