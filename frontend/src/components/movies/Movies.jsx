@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getMovies } from '../../api';
 import './Movies.css';
-import Navbar from '../Navbar/Navbar'; 
+import Navbar from '../navbar/Navbar'; 
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
