@@ -15,14 +15,14 @@
   }
   
   /* Estilos para cada tarjeta de película */
+
   .movie-card {
-    background-color: #75dff0;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
     padding: 20px;
-    max-width: 250px;
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    transition: transform 0.2s;
   }
   
   .movie-card:hover {
@@ -41,5 +41,15 @@
     font-size: 1em;
     color: #666;
     margin: 5px 0;
+  }
+  
+
+  
+  .movie-image {
+    width: 100%;
+    height: auto;
+    max-width: 300px; /* Ajusta el tamaño máximo de la imagen */
+    border-radius: 8px;
+    margin-bottom: 10px;
   }
   
