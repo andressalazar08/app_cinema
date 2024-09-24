@@ -14,14 +14,17 @@ const Login = () => {
     
     console.log("Login button clicked");
     
-    const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080';
-      
+    // const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080';
+        
+    //const BASE_URL =  'http://localhost:8080';
+    const BASE_URL = import.meta.env.VITE_API_BASE_URL
+
     try {
       const response = await axios.post(`${BASE_URL}/user/loginUser`, { email, password });
-      // console.log(response.data.token);
+      console.log(response.data.token);
       if (response.data.token) {
         localStorage.setItem('token', response.data.token);  // Guardar el token en localStorage
-        // console.log("Login successful");        
+        console.log("Login successful");        
         navigate('/movies');
       } else {
         setError('Credenciales incorrectas. Inténtalo de nuevo.');

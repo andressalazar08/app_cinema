@@ -12,7 +12,12 @@ const app = express();
 app.use(express.json());//req.body usefull
 app.use(cookieParser());//lectura de cookies para obtener del navegador
 
-app.use(cors());
+
+
+app.use(cors({
+  origin: process.env.FRONT // Asegúrate de permitir tu dominio de frontend
+}))
+
 
 const router = express.Router();
 
