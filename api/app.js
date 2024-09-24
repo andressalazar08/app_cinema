@@ -14,6 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());//lectura de cookies para obtener del navegador
 console.log(process.env.FRONT);
 
+app.options('*', cors());
 
 app.use(cors({
     origin: process.env.FRONT, // Sin la barra al final
