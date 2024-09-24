@@ -17,7 +17,7 @@ console.log(process.env.FRONT);
 app.options('*', cors());
 
 app.use(cors({
-    origin: process.env.FRONT || 'http://localhost:5173', // Sin la barra al final
+    origin: process.env.FRONT, // Sin la barra al final
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
     credentials: true // Si estás usando cookies o autenticación con sesión
   }));
