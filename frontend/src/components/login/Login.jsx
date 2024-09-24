@@ -68,8 +68,8 @@ const Login = () => {
                     </div>
 
                     <div className="inputBox">
-                        {/* <input type="submit" value="Login"/> */}
-                        <button type="submit">Login</button>
+                        <input type="submit" value="Login"/>
+                        {/* <button type="submit">Login</button> */}
                     </div>
                 </form>
         </div>
