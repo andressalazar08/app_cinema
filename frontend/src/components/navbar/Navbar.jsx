@@ -10,14 +10,14 @@ const Navbar = ()=>{
     const handleLogout = ()=>{
         localStorage.removeItem('token');
         navitage('/')
-        console.log(localStorage.length)
+        //console.log(localStorage.length)
     }
 
     return (
         <nav className="navbar">
-          <h1 className="navbar-logo">Cinema App</h1>
+          <h1 className="navbar-logob">Cinema App</h1>
+          <a href="/movies" className="navbar-logo">Películas en función</a>
           <ul className="navbar-links">
-            <li><a href="/movies">Películas</a></li>
             <li><button onClick={handleLogout} className="logout-button">Cerrar sesión</button></li>
           </ul>
         </nav>

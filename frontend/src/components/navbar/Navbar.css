@@ -10,8 +10,17 @@
   .navbar-logo {
     font-size: 1.5rem;
     font-weight: bold;
+    text-decoration: none;
+    color: white;
   }
   
+  .navbar-logob {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: rgb(18, 212, 203);
+  }
+
   .navbar-links {
     list-style: none;
     display: flex;
@@ -27,6 +36,14 @@
     text-decoration: none;
   }
   
+  .navbar-links li a {
+    color:white;
+    display:flex;
+    justify-content: space-between;
+    /* align-items: center;
+    text-decoration: none; */
+  }
+
   .logout-button {
     background-color: #f44336;
     color: white;
