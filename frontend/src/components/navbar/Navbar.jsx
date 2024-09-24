@@ -16,7 +16,7 @@ const Navbar = ()=>{
     return (
         <nav className="navbar">
           <h1 className="navbar-logob">Cinema App</h1>
-          <Link to="/movies" className="navbar-link">Películas en función</Link>
+          <Link to="/movies" className="navbar-links">Películas en función</Link>
           <ul className="navbar-links">
             <li><button onClick={handleLogout} className="logout-button">Cerrar sesión</button></li>
           </ul>

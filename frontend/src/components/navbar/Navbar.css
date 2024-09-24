@@ -25,6 +25,8 @@
     list-style: none;
     display: flex;
     gap: 1rem;
+    text-decoration: none;
+    color: white;
   }
   
   .navbar-links li {
