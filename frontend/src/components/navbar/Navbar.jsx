@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Navbar.css';
 import axios from 'axios'
 
@@ -16,7 +16,7 @@ const Navbar = ()=>{
     return (
         <nav className="navbar">
           <h1 className="navbar-logob">Cinema App</h1>
-          <a href="/movies" className="navbar-logo">Películas en función</a>
+          <Link to="/movies" className="navbar-link">Películas en función</Link>
           <ul className="navbar-links">
             <li><button onClick={handleLogout} className="logout-button">Cerrar sesión</button></li>
           </ul>
