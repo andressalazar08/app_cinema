@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getMovies } from '../../api';
 import './Movies.css';
 import Navbar from '../navbar/Navbar'; 
+import { Link } from 'react-router-dom';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
@@ -36,7 +37,9 @@ const Movies = () => {
           <p>Año: {movie.anio}</p>
           <p>Duración: {movie.duracion} minutos</p>
           <p>Rating: {movie.rating}/5</p>
-          <p>prueba</p>
+          <Link to={`/movies/${movie.id}`}>
+              <button>Ver detalles</button>
+            </Link>
         </div>
       ))}
     </div>

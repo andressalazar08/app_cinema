@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Login from './components/login/Login.jsx';
 import Movies from './components/movies/Movies.jsx';
-
+import MovieDetail from './components/movieDetail/MovieDetail.jsx';
 // import './index.css'
 
 createRoot(document.getElementById('root')).render(
@@ -17,6 +17,9 @@ createRoot(document.getElementById('root')).render(
 
         {/* ruta para el listado de películas */}
         <Route path="/movies" element={<Movies />} />
+
+        {/* ruta para el detalle de la película */}
+        <Route path="/movies/:id" element={<MovieDetail />} />
 
       </Routes>
         
