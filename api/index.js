@@ -2,7 +2,7 @@ const app = require('./app');
 const dotenv = require('dotenv').config();
 const { Sequelize }= require('sequelize');
 const sequelize = require('./config/database');
-
+require('./config/relations'); // Importar las relaciones
 
 
 const PORT = process.env.PORT || 5000;
