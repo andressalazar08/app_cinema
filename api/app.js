@@ -46,6 +46,10 @@ app.use('/user', userRoute);
 const adminRoute = require('./routes/adminRoute');
 app.use('/admin', adminRoute);
 
+//Sala route
+const salaRoute = require('./routes/salaRoute');
+app.use('/detalles', salaRoute);
+
 
 app.use(errorHandler);
 
