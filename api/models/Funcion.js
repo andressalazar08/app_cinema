@@ -6,7 +6,7 @@ const Movie = require('./Movie');
 
 const Funcion = sequelize.define('Funcion', {
   horario: {
-    type: DataTypes.STRING,  // Puedes usar TIME o DATETIME si necesitas fechas exactas
+    type: DataTypes.DATE,  // Puedes usar TIME o DATETIME si necesitas fechas exactas
     allowNull: false,
   },
 });
