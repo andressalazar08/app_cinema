@@ -3,6 +3,7 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 const Sala = require('./Sala');
 const Movie = require('./Movie');
+const Silla = require('./Silla');
 
 const Funcion = sequelize.define('Funcion', {
   horario: {
@@ -13,5 +14,6 @@ const Funcion = sequelize.define('Funcion', {
 
 Funcion.belongsTo(Sala);  // Relación: una función ocurre en una sala
 Funcion.belongsTo(Movie); // Relación: una función proyecta una película
+Funcion.hasMany(Silla, {foreignKey: 'FuncionId'})
 
 module.exports = Funcion;
