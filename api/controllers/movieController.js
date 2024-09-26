@@ -1,8 +1,16 @@
 const Movie = require('../models/Movie');
+const Sala = require('../models/Sala');
 
 const getAllMovies = async (req, res) => {
     try {
-        const movies = await Movie.findAll();
+        const movies = await Movie.findAll({
+            include: [
+                {
+                    model: Sala, // Incluimos la información de las salas
+                    attributes: ['numero', 'horario'], // Solo los campos que te interesan de la sala
+                },
+            ],
+        });
         res.json(movies);
     } catch (error) {
         res.status(500).json({ error: error });

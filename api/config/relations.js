@@ -11,3 +11,6 @@ Silla.belongsTo(Sala, { foreignKey: 'SalaId' });
 // Una sala proyecta una película
 Sala.belongsTo(Movie, { foreignKey: 'MovieId' });
 Movie.hasMany(Sala, { foreignKey: 'MovieId' });
+
+// Movie.hasMany(Sala, { foreignKey: 'MovieId' });
+// Sala.belongsTo(Movie, { foreignKey: 'MovieId' });
