@@ -37,8 +37,9 @@ const Movies = () => {
           <p>Año: {movie.anio}</p>
           <p>Duración: {movie.duracion} minutos</p>
           <p>Rating: {movie.rating}/5</p>
-
-          {movie.Salas && movie.Salas.length > 0 && (
+{/* 
+          {movie.Salas && movie.Salas.length > 0 && ( */}
+          {movie.Salas && (
                 <div className="salas-info">
                   <h3>Salas y Horarios</h3>
                   {movie.Salas.map((sala) => (
@@ -49,10 +50,15 @@ const Movies = () => {
                   ))}
                 </div>)}
 
-
+{/* 
           <Link to={`/movies/${movie.id}`}>
               <button>Ver detalles</button>
-            </Link>
+            </Link> */}
+
+<Link to={`/movies/${movie.id}/sala/${movie.Salas[0].numero}`}>
+  <button>Ver detalles</button>
+</Link>
+
         </div>
       ))}
     </div>

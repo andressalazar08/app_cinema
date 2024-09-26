@@ -8,6 +8,7 @@ const getAllMovies = async (req, res) => {
                 {
                     model: Sala, // Incluimos la información de las salas
                     attributes: ['numero', 'horario'], // Solo los campos que te interesan de la sala
+                    as: 'Salas',
                 },
             ],
         });

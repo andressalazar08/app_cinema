@@ -19,7 +19,10 @@ createRoot(document.getElementById('root')).render(
         <Route path="/movies" element={<Movies />} />
 
         {/* ruta para el detalle de la película */}
-        <Route path="/movies/:id" element={<MovieDetail />} />
+        {/* <Route path="/movies/:id" element={<MovieDetail />} /> */}
+
+         {/* ruta para el detalle de la película y las sillas en la sala */}
+         <Route path="/movies/:movieId/sala/:salaId" element={<MovieDetail />} />
 
       </Routes>
         
