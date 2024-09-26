@@ -16,7 +16,7 @@ const authenticateAndSyncDatabase = async()=>{
         console.log('Database connection established');
 
         //sync
-        await sequelize.sync({ force: true })
+        await sequelize.sync({ force: false })
         console.log('Database synced successfully');
 
 
