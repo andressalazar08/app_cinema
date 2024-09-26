@@ -16,7 +16,7 @@ const authenticateAndSyncDatabase = async()=>{
         console.log('Database connection established');
 
         //sync
-        await sequelize.sync()
+        await sequelize.sync({ force: true })
         console.log('Database synced successfully');
 
 
@@ -25,7 +25,7 @@ const authenticateAndSyncDatabase = async()=>{
     }
 }
 
-
+ 
 app.listen(PORT, ()=>{
     console.log(`Server is running on port: ${PORT}`);
     authenticateAndSyncDatabase();

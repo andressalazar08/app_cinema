@@ -1,8 +1,10 @@
-// routes/salaRoutes.js
+// routes/sillas.js
 const express = require('express');
-const { getFuncionesBySala } = require('../controllers/salaController');
+const { getSillasDisponibles } = require('../controllers/salaController');
+
 const router = express.Router();
 
-router.get('/salas/:id/funciones', getFuncionesBySala);
+// Ruta para obtener sillas disponibles de una película en una sala específica
+router.get('/pelicula/:movieId/sala/:salaId/sillas-disponibles', getSillasDisponibles);
 
 module.exports = router;

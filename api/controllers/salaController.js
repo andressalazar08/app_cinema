@@ -1,33 +1,33 @@
-// controllers/salaController.js
-const  Sala  = require('../models/Sala');
-const  Funcion  = require('../models/Funcion');
-const  Movie  = require('../models/Movie');
-//Los modelos de la base de datos los debo importar desestructurados
+const Silla = require('../models/Silla');
+const Sala = require('../models/Sala');
+const Movie = require('../models/Movie');
 
-const getFuncionesBySala = async (req, res) => {
-    
+// Obtener sillas disponibles para una película en una sala
+const getSillasDisponibles = async (req, res) => {
+  const { movieId, salaId } = req.params;
+
   try {
-    const salaId = req.params.id;
-    console.log(salaId);
-    // const sala = await Sala.findByPk({where:{Id:salaId}})
-    const sala = await Sala.findByPk(salaId, {
-      include: [{
-        model: Funcion,
-        include: [Movie],  // Incluye los detalles de la película en cada función
-      }],
+    // Buscar la sala y verificar que esté proyectando la película correcta
+    const sala = await Sala.findOne({
+      where: { id: salaId, MovieId: movieId },
+      include: {
+        model: Silla
+        // where: { estado: 'disponible' }  // Filtrar solo las sillas disponibles
+      }
     });
 
     if (!sala) {
-      return res.status(404).json({ message: 'Sala no encontrada' });
+      return res.status(404).json({ message: 'No se encontraron sillas para esta película en esta sala.' });
     }
 
-    res.json(sala);
+    // Devolver las sillas disponibles de esa sala
+    return res.json(sala.Sillas); // sala.Sillas contiene las sillas disponibles
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Error al obtener las funciones de la sala' });
+    console.error('Error al obtener sillas disponibles:', error);
+    return res.status(500).json({ message: 'Error del servidor' });
   }
 };
 
-module.exports={
-    getFuncionesBySala,
-}
+module.exports = {
+  getSillasDisponibles
+};
