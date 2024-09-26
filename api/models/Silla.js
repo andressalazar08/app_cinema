@@ -14,8 +14,8 @@ const Silla = sequelize.define('Silla', {
     allowNull: false,
   }
 });
+module.exports = Silla;
 
 // Silla.belongsTo(Sala); // Relación: una silla pertenece a una sala
 // Silla.belongsTo(Funcion, { foreignKey: 'FuncionId' }); // Esto establece que una silla pertenece a una función
 
-module.exports = Silla;
