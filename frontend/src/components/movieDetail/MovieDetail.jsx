@@ -8,12 +8,14 @@ const MovieDetail = () => {
    console.log("sala aqui",salaId)
 
   const [movieDetails, setMovieDetails] = useState(null);
+  
+  const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080';
 
   useEffect(() => {
     // Llamada a la API para obtener detalles de la película, sala y sillas
     const fetchMovieDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/detalles/pelicula/${movieId}/sala/${salaId}/sillas`);
+        const response = await axios.get(`${BASE_URL}/detalles/pelicula/${movieId}/sala/${salaId}/sillas`);
         console.log("esta es la respuesta",response)
         setMovieDetails(response.data);
         console.log("aquiMovieDetails", setMovieDetails);
