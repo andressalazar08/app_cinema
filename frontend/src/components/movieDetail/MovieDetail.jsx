@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import axios from 'axios'; // Si no usas axios, puedes reemplazarlo por fetch
 import './MovieDetail.css';  // Archivo CSS para estilos específicos del login;
-
+import Modal from 'react-modal';
+Modal.setAppElement('#root');
 
 const MovieDetail = () => {
    const location=useLocation(); //por aquí llegan las props del componente padre
@@ -15,6 +16,10 @@ const MovieDetail = () => {
   const [movieDetails, setMovieDetails] = useState(null);
   
   const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080';
+    //estados para las sillas seleccionadas y modal
+  const [selectedSilla, setSelectedSilla] = useState(null); // Para almacenar la silla seleccionada
+  const [selectedSillaNumero, setSelectedSillaNumero] = useState(null); // Para almacenar el número de silla contado
+  const [isModalOpen, setIsModalOpen] = useState(false); // Controlar la visibilidad del modal
 
   useEffect(() => {
     // Llamada a la API para obtener detalles de la película, sala y sillas
@@ -39,20 +44,43 @@ const MovieDetail = () => {
     return <div>Cargando detalles de la película...</div>;
   }
 
+
+
+
   //cambia el estado de una silla
-  const handleSillaClick = (silla) => {
+  const handleSillaClick = (silla,numeroSilla) => {
     if (silla.estado === 'disponible') {
       console.log(`Silla seleccionada: ${silla.numero}`);
       // Aquí podrías manejar la selección, como actualizar el estado global o local.
+      setSelectedSilla(silla); // Almacena la silla seleccionada
+      setSelectedSillaNumero(numeroSilla); // Almacena el número de silla basado en seatCounter
+      setIsModalOpen(true); // Abre el modal
     }
   };
 
-  let seatCounter = 1;
+  // Cierra el modal
+  const closeModal = () => {
+    setIsModalOpen(false); 
+    setSelectedSilla(null); // Reinicia la silla seleccionada
+    setSelectedSillaNumero(null); // Reinicia el número de silla
+  };
+
+  // Función para procesar el pago
+  const handlePayment = () => {
+    console.log(`Procesando pago para la silla ${selectedSilla.numero}`);
+    // Aquí puedes añadir la lógica de pago
+    closeModal(); // Cierra el modal tras procesar el pago
+  };
+
+
+
+  let seatCounter = 1; //contador de silla de la sala
+
+
 
   return (
     <div className="movie-detail-container">
-      <h1>Detalles de la Película</h1>
-
+    
       {/* Información de la película */}
    
         <h2>{movie.titulo}</h2>
@@ -76,7 +104,7 @@ const MovieDetail = () => {
             <div 
               key={silla.id}
               className={`silla ${silla.estado}`} // Cambia el estilo dependiendo del estado
-              onClick={() => handleSillaClick(silla)}
+              onClick={() => handleSillaClick(silla,index+1)}
               >
               {seatCounter++} {/* Incrementa el contador después de usarlo */} {/* Esto mostrará un número secuencial en lugar del id */}
               {/* {silla.estado} */}
@@ -91,7 +119,7 @@ const MovieDetail = () => {
             <div 
               key={silla.id}
               className={`silla ${silla.estado}`} // Cambia el estilo dependiendo del estado
-              onClick={() => handleSillaClick(silla)}
+              onClick={() => handleSillaClick(silla,index+6)}
               >
               {seatCounter++} {/* Incrementa el contador después de usarlo */}
               {/* {silla.id}  */}
@@ -106,7 +134,7 @@ const MovieDetail = () => {
             <div 
               key={silla.id}
               className={`silla ${silla.estado}`} // Cambia el estilo dependiendo del estado
-              onClick={() => handleSillaClick(silla)}
+              onClick={() => handleSillaClick(silla,index+11)}
               >
               {seatCounter++} {/* Incrementa el contador después de usarlo */}
               {/* {silla.id}  */}
@@ -116,6 +144,29 @@ const MovieDetail = () => {
 
 
       </div>
+      
+
+      {/* Modal para confirmar el pago */}
+          
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={closeModal}
+        contentLabel="Confirmar Pago"
+        className="modal"
+        overlayClassName="modal-overlay"
+      >
+        <h2>Confirmar Pago</h2>
+        {selectedSilla && (
+          <div>
+            <p>Silla seleccionada: {selectedSillaNumero}</p>
+            <p>Estado: {selectedSilla.estado}</p>
+            <p>Precio: $10.00</p> {/* Aquí puedes ajustar el precio dinámicamente */}
+            <button onClick={handlePayment}>Confirmar Pago</button>
+            <button onClick={closeModal}>Cancelar</button>
+          </div>
+        )}
+      </Modal>
+
     </div>
   );
 };
