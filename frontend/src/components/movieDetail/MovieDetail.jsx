@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import axios from 'axios'; // Si no usas axios, puedes reemplazarlo por fetch
 
 const MovieDetail = () => {
+   const location=useLocation(); //por aquí llegan las props del componente padre
+   const { movie } = location.state || {}; //asegurarse de qe state existe
+
    const { movieId, salaId } = useParams(); // Extraer los parámetros de la URL
    console.log("pelicula aqui",movieId)
    console.log("sala aqui",salaId)
@@ -37,12 +40,13 @@ const MovieDetail = () => {
   return (
     <div className="movie-detail-container">
       <h1>Detalles de la Película</h1>
+
       {/* Información de la película */}
       <div className="movie-info">
-        {/* <h2>{movieDetails.movie.titulo}</h2>
-        <p>Año: {movieDetails.movie.anio}</p>
-        <p>Duración: {movieDetails.movie.duracion} minutos</p>
-        <p>Rating: {movieDetails.movie.rating}/5</p> */}
+        <h2>{movie.titulo}</h2>
+        <p>Año: {movie.anio}</p>
+        <p>Duración: {movie.duracion} minutos</p>
+        <p>Rating: {movie.rating}/5</p>
       </div>
 
       {/* Información de la sala */}
