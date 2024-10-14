@@ -14,14 +14,16 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());//lectura de cookies para obtener del navegador
 console.log(process.env.FRONT);
 
-app.options('*', cors());
+// app.options('*', cors());
 
+app.use(cors({
+    origin: process.env.FRONT, // Sin la barra al final
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
+    credentials: true // Si estás usando cookies o autenticación con sesión
+  }));
 // app.use(cors({
-//     origin: process.env.FRONT, // Sin la barra al final
-//     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
-//     credentials: true // Si estás usando cookies o autenticación con sesión
+//     origin: 'http://localhost:5173'
 //   }));
-app.use(cors());
 const router = express.Router();
 
 router.get('/', (req,res)=>{
