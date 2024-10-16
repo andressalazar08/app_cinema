@@ -52,6 +52,9 @@ app.use('/admin', adminRoute);
 const salaRoute = require('./routes/salaRoute');
 app.use('/detalles', salaRoute);
 
+//Silla route
+const sillaRoute = require('./routes/sillaRoute');
+app.use('/actualiza', sillaRoute)
 
 app.use(errorHandler);
 

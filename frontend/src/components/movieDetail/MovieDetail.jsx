@@ -66,12 +66,34 @@ const MovieDetail = () => {
   };
 
   // Función para procesar el pago
-  const handlePayment = () => {
-    console.log(`Procesando pago para la silla ${selectedSilla.numero}`);
-    // Aquí puedes añadir la lógica de pago
-    closeModal(); // Cierra el modal tras procesar el pago
-  };
+  // const handlePayment = () => {
+  //   console.log(`Procesando pago para la silla ${selectedSilla.numero}`);
+  //   // Aquí puedes añadir la lógica de pago
+  //   closeModal(); // Cierra el modal tras procesar el pago
+  // };
+  const handlePayment = async () => {
+    try {
+      // Enviar solicitud PUT al backend para actualizar el estado de la silla seleccionada
+      const response = await axios.put(`${BASE_URL}/actualiza/salas/${salaId}/sillas/${selectedSilla.id}`, {
+        estado: 'ocupado'
+      });
+      console.log("respuesta del servidor",response)
 
+      //const response = await axios.get(`${BASE_URL}/detalles/pelicula/${movieId}/sala/${salaId}/sillas`);
+  
+      // Actualiza el estado local de las sillas
+      setMovieDetails((prevDetails) =>
+        prevDetails.map((silla) =>
+          silla.id === selectedSilla.id ? { ...silla, estado: 'ocupada' } : silla
+        )
+      );
+  
+      console.log(`Pago confirmado para la silla ${selectedSillaNumero}`);
+      closeModal(); // Cerrar el modal tras confirmar el pago
+    } catch (error) {
+      console.error('Error al procesar el pago:', error);
+    }
+  };
 
 
   let seatCounter = 1; //contador de silla de la sala
