@@ -29,6 +29,24 @@ const updateSillaDisponible = async(req,res)=>{
   }
 };
 
+//actualizar todas las sillas a disponible
+const actualizarTodasSillas = async(req, res)=>{
+  try {
+    // Actualiza todas las sillas para que estén disponibles
+    const [affectedRows] = await Silla.update(
+      { estado: 'disponible' }, // Nuevo estado de las sillas
+      { where: {} } // Afecta todas las sillas en la tabla
+    );
+
+    // Responde con un mensaje indicando cuántas filas fueron actualizadas
+    res.send({ message: `${affectedRows} sillas actualizadas a "disponible"` });
+  } catch (error) {
+    console.error('Error al actualizar las sillas:', error);
+    res.status(500).send({ error: 'Error al actualizar las sillas' });
+  }
+}
+
 module.exports={
     updateSillaDisponible,
+    actualizarTodasSillas,
 }
