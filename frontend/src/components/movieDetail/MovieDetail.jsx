@@ -3,7 +3,10 @@ import { useParams, useLocation } from 'react-router-dom';
 import axios from 'axios'; // Si no usas axios, puedes reemplazarlo por fetch
 import './MovieDetail.css';  // Archivo CSS para estilos específicos del login;
 import Modal from 'react-modal';
-Modal.setAppElement('#root');
+import Navbar from '../navbar/Navbar'
+;Modal.setAppElement('#root');
+
+
 
 const MovieDetail = () => {
    const location=useLocation(); //por aquí llegan las props del componente padre
@@ -101,10 +104,13 @@ const MovieDetail = () => {
 
 
   return (
+      <>
+       <Navbar></Navbar>
+   
     <div className="movie-detail-container">
     
       {/* Información de la película */}
-   
+       
         <h2>{movie.titulo}</h2>
         <p>Año: {movie.anio}</p>
         <p>Duración: {movie.duracion} minutos</p>
@@ -190,6 +196,8 @@ const MovieDetail = () => {
       </Modal>
 
     </div>
+    </>
+
   );
 };
 
