@@ -84,7 +84,7 @@ const MovieDetail = () => {
       // Actualiza el estado local de las sillas
       setMovieDetails((prevDetails) =>
         prevDetails.map((silla) =>
-          silla.id === selectedSilla.id ? { ...silla, estado: 'ocupada' } : silla
+          silla.id === selectedSilla.id ? { ...silla, estado: 'ocupado' } : silla
         )
       );
   
