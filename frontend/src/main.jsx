@@ -1,10 +1,11 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
 import Login from './components/login/Login.jsx';
 import Movies from './components/movies/Movies.jsx';
 import MovieDetail from './components/movieDetail/MovieDetail.jsx';
+import CrearUsuario from './components/createUser/CreateUser.jsx';
 // import './index.css'
 
 createRoot(document.getElementById('root')).render(
@@ -23,6 +24,8 @@ createRoot(document.getElementById('root')).render(
 
          {/* ruta para el detalle de la película y las sillas en la sala */}
          <Route path="/movies/:movieId/sala/:salaId" element={<MovieDetail />} />
+
+         <Route path='/createUser' element={<CrearUsuario/>}/>
 
       </Routes>
         

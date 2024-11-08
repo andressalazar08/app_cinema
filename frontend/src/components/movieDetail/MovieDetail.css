@@ -1,6 +1,7 @@
 .movie-detail-container {
     text-align: center;
     padding: 20px;
+    background-color: #33333381;
   }
   
   .sala-layout {
@@ -70,7 +71,7 @@
   .corredor {
     grid-column: span 5;
     height: 20px;
-    background-color: rgb(189, 179, 179);
+    background-color: rgb(44, 41, 41);
   }
   
   @media screen and (max-width: 768px) {
@@ -99,11 +100,23 @@
       box-shadow: 2px 2px 5px rgba(24, 182, 197, 0.3);
     }
   }
-  
 
-  .modal {
+    .modal-overlay {
+      /*background:linear-gradient(90deg,#62f062, #30aedf);*/
+      background: #333;
+      background-size: cover;
+      background-position: center;
+      opacity: 1;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+  
+   .modal {
     width: 300px;
-    background: white;
+    background: rgb(255, 255, 255);
     padding: 20px;
     border-radius: 10px;
     position: absolute;
@@ -112,13 +125,35 @@
     transform: translate(-50%, -50%);
     text-align: center;
   }
-  
-  .modal-overlay {
-    background: rgba(0, 0, 0, 0.75);
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+  .modal button {
+    margin: 8px;
+    background-color:#28a745 ;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
   }
+  
+  .modal button:first-child {
+    background-color: #28a745; /* Verde para confirmar */
+    color: white;
+  }
+  
+  .modal button:first-child:hover {
+    background-color: #218838;
+  }
+  
+  .modal button:last-child {
+    background-color: #dc3545; /* Rojo para cancelar */
+    color: white;
+  }
+  
+  .modal button:last-child:hover {
+    background-color: #c82333;
+  }
+
+ 
+  
+  
   

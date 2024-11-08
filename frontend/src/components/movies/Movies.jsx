@@ -48,14 +48,16 @@ const Movies = () => {
                               ))}
                             </div>)}
 
-            
+                    
                     <Link 
                         to={`/movies/${movie.id}/sala/${movie.Salas[0].numero}`}
                         state={{movie:movie}} //envío por props la info de movie
                           >
-                      
-                        <button>Ver detalles</button>
+                        
+                        <button type="submit" className="submit-button">Ver detalles</button>
+                        
                       </Link>
+                      
 
 
 
