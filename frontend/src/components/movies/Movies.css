@@ -2,7 +2,7 @@
 .movies-container {
     display: flex;
     /*background: linear-gradient(90deg,#62f062, #30aedf);*/
-    background-color: #30aedf;
+    background-color: #0c2731;
     flex-direction: column;
     align-items: center;
     padding: 20px;
