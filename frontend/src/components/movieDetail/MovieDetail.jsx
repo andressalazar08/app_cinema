@@ -3,8 +3,8 @@ import { useParams, useLocation } from 'react-router-dom';
 import axios from 'axios'; // Si no usas axios, puedes reemplazarlo por fetch
 import './MovieDetail.css';  // Archivo CSS para estilos específicos del login;
 import Modal from 'react-modal';
-import Navbar from '../navbar/Navbar'
-;Modal.setAppElement('#root');
+import Navbar from '../navbar/Navbar';
+Modal.setAppElement('#root');
 
 
 
