@@ -3,6 +3,7 @@ import { getMovies } from '../../api';
 import './Movies.css';
 import Navbar from '../navbar/Navbar'; 
 import { Link } from 'react-router-dom';
+import SearchBar from '../searchBar/SearchBar';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
@@ -20,6 +21,7 @@ const Movies = () => {
   return (
     <>
     <Navbar></Navbar> 
+    <SearchBar></SearchBar>
       <div className="movies-container">
         <h1>Listado de Películas</h1>
 
