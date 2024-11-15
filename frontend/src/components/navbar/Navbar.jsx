@@ -17,6 +17,7 @@ const Navbar = ()=>{
         <nav className="navbar">
           <h1 className="navbar-logob">Cinema App</h1>
           <Link to="/movies" className="navbar-links">Películas en función</Link>
+          <Link to="/createUser" className='CrearUsuario'>Crear Usuario</Link>
           <ul className="navbar-links">
             <li><button onClick={handleLogout} className="logout-button">Cerrar sesión</button></li>
           </ul>

@@ -1,6 +1,8 @@
 /* Estilos para el contenedor principal de las películas */
 .movies-container {
     display: flex;
+    /*background: linear-gradient(90deg,#62f062, #30aedf);*/
+    background-color: #0c2731;
     flex-direction: column;
     align-items: center;
     padding: 20px;
@@ -18,6 +20,7 @@
 
   .movie-card {
     border: 1px solid #ccc;
+    background-color: #333;
     padding: 20px;
     margin: 10px;
     border-radius: 8px;
@@ -35,11 +38,17 @@
     margin-bottom: 10px;
     color: #333;
   }
+
+  .movie-card h3{
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color:#62f062
+  }
   
   /* Información adicional */
   .movie-card p {
     font-size: 1em;
-    color: #666;
+    color: #9ebbab;
     margin: 5px 0;
   }
   
@@ -51,5 +60,17 @@
     max-width: 300px; /* Ajusta el tamaño máximo de la imagen */
     border-radius: 8px;
     margin-bottom: 10px;
+  }
+
+  .submit-button{
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    background:linear-gradient(90deg,#62f062, #30aedf);
+    color: #fff;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
   }
   
