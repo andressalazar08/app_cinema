@@ -7,11 +7,13 @@ import SearchBar from '../searchBar/SearchBar';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
+  const [filteredMovies, setFilteredMovies] = useState([]);
 
   useEffect(() => {
     const fetchMovies = async () => {
       const data = await getMovies();
       setMovies(data);
+      setFilteredMovies(data); 
     };
     fetchMovies();
     console.log("entrada")
@@ -21,17 +23,14 @@ const Movies = () => {
   return (
     <>
     <Navbar></Navbar> 
-    <SearchBar></SearchBar>
+    <SearchBar movies={movies} setFilteredMovies={setFilteredMovies} />
       <div className="movies-container">
         <h1>Listado de Películas</h1>
 
         {/* tarjeta pelídulas */}
 
         <div className="movie-list">
-
-              {movies.map((movie)=>{
-                return (
-                
+              {filteredMovies.map((movie) => (          
                 <div className="movie-card"  key={movie.id}> 
                       <h2>{movie.titulo}</h2>
                       <img  src={movie.image_url}  alt={movie.titulo}   className="movie-image" />
@@ -66,7 +65,7 @@ const Movies = () => {
                 </div>
 
                 )
-              })}
+              )}
 
         </div>
         </div>
