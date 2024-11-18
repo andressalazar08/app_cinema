@@ -6,9 +6,9 @@ const options ={
     definition:{
         openapi: '3.0.0',
         info:{
-            title: 'API',
+            title: 'API - UDEA CINEMA APP',
             version: '1.0.0',
-            description: 'API for a simple API'
+            description: 'API for the cinema app udea'
         },
     },
     apis: ['./api/routes/*.js', './api/models/*.js']
