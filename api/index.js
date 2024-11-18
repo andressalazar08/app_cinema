@@ -3,7 +3,7 @@ const dotenv = require('dotenv').config();
 const { Sequelize }= require('sequelize');
 const sequelize = require('./config/database');
 require('./config/relations'); // Importar las relaciones
-
+const {swaggerDocs:V1SwaggerDocs} = require('./routes/swagger');
 
 const PORT = process.env.PORT || 5000;
 
@@ -29,4 +29,5 @@ const authenticateAndSyncDatabase = async()=>{
 app.listen(PORT, ()=>{
     console.log(`Server is running on port: ${PORT}`);
     authenticateAndSyncDatabase();
+    V1SwaggerDocs(app, PORT);
 })
